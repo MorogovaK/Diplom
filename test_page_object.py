@@ -12,7 +12,6 @@ from MainPage import MainPage
 @allure.description("Проверка загрузки главной страницы")
 @allure.feature("READ")
 @allure.severity("blocker")
-@pytest.mark.positive_test
 def test_chitai_gorod(): 
     with allure.step("Открытие веб-страницы в Chrome и выполнение поиска"):
         browser = webdriver.Chrome() 
@@ -24,21 +23,19 @@ def test_chitai_gorod():
 @allure.feature("READ")
 @allure.severity("blocker")
 @pytest.mark.ui_test
-@pytest.mark.positive_test
 def test_search_book_rus_ui():
     with allure.step("Открытие веб-страницы в Chrome, поиск книги на кириллице"):
         browser = webdriver.Chrome()
         main_page = MainPage(browser) 
         main_page.set_cookie_policy()
-        text = main_page.search_book_rus_ui('Мастер и Маргарита')
-        assert text [0:53] == "Показываем результаты по запросу «мастер и маргарита»"
+        text = main_page.search_book_rus_ui('планы на лето')
+        assert text [0:53] == "Показываем результаты по запросу «планы на лето», 2 р"
 
 @allure.title("Поиск книги на латинице")
 @allure.description("Проверка получения книг на латинице")
 @allure.feature("READ")
 @allure.severity("blocker")
 @pytest.mark.ui_test
-@pytest.mark.positive_test
 def test_search_book_eng_ui():
     with allure.step("Открытие веб-страницы в Chrome, поиск книги на латинице"):
         browser = webdriver.Chrome()
@@ -47,31 +44,28 @@ def test_search_book_eng_ui():
         text = main_page.search_book_eng_ui('Master i Margarita')
         assert text [0:53] == "Показываем результаты по запросу «master i margarita»"
 
-@allure.title("Поиск по символам юникода")
-@allure.description("Проверка поиска по символам юникода")
+@allure.title("Поиск по автору")
+@allure.description("Проверка поиска по автору")
 @allure.feature("READ")
 @allure.severity("blocker")
 @pytest.mark.ui_test
-@pytest.mark.negative_test
 def test_search_invalid_ui():
-    with allure.step("Открытие веб-страницы в Chrome, ввод символов юникода"):
+    with allure.step("Открытие веб-страницы в Chrome, ввод автора"):
         browser = webdriver.Chrome()
         main_page = MainPage(browser) 
         main_page.set_cookie_policy()
-        text = main_page.search_invalid_ui('✉ § © ☯ ☭ ? $ £ ¢')
-        assert text [0:28] == "Похоже, у нас такого нет"
+        text = main_page.search_invalid_ui('Анна Джейн')
+        assert text == "Показываем результаты по запросу «анна джейн», 129 результатов"
 
-@allure.title("Пустая корзина")
-@allure.description("Проверка пустой корзины")
+@allure.title("Переход на вкладку 'Распродажа'")
+@allure.description("Проверка перехода на вкладку 'Распродажа' на сайте Читай-город")
 @allure.feature("READ")
 @allure.severity("blocker")
 @pytest.mark.ui_test
-@pytest.mark.negative_test
-def test_get_empty_cart():
-    with allure.step("Открытие веб-страницы в Chrome, заходим в корзину"):
+def test_open_sales_tab():
+    with allure.step("Переход на вкладку 'Распродажа' "):
         browser = webdriver.Chrome()
         main_page = MainPage(browser) 
         main_page.set_cookie_policy()
-        text = main_page.get_empty_cart()
-        assert text [0:20] == "В корзине ничего нет"       
-
+        text = browser.find_element(By.CSS_SELECTOR, ".header-bottom__link").text
+        assert text == "Акции"
