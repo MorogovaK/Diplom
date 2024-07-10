@@ -22,7 +22,7 @@ class MainPage:
         def search_book_rus_ui(self, term):
             self._driver.find_element(By.CLASS_NAME, "header-search__input").send_keys(term)
             self._driver.find_element(By.CLASS_NAME, "header-search__button").click()
-            wait = WebDriverWait(self._driver, 20)
+            wait = WebDriverWait(self._driver, 10)
             txt = self._driver.find_element(By.XPATH, '//*[@id="__layout"]/div/div[3]/div[1]/p').text
             return txt
 
@@ -30,7 +30,7 @@ class MainPage:
         def search_book_eng_ui(self, term):
             self._driver.find_element(By.CLASS_NAME, "header-search__input").send_keys(term)
             self._driver.find_element(By.CLASS_NAME, "header-search__button").click()
-            wait = WebDriverWait(self._driver, 20)
+            wait = WebDriverWait(self._driver, 10)
             txt = self._driver.find_element(By.XPATH, '//*[@id="__layout"]/div/div[3]/div[1]/p').text
             return txt
 
@@ -38,7 +38,7 @@ class MainPage:
         def search_invalid_ui(self, author):
             self._driver.find_element(By.CLASS_NAME, "header-search__input").send_keys(author)
             self._driver.find_element(By.CLASS_NAME, "header-search__button").click()
-            wait = WebDriverWait(self._driver, 20)
+            wait = WebDriverWait(self._driver, 10)
             txt = self._driver.find_element(By.XPATH, '//*[@id="__layout"]/div/div[3]/div[1]/p').text
             return txt
 
