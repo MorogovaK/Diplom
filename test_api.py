@@ -5,7 +5,7 @@ import unittest
 
 BASE_URL = "https://web-gate.chitai-gorod.ru/api/v1"
 BASE_URL_2 = "https://web-gate.chitai-gorod.ru/api/v2"
-TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOjU1MjE4MDQsImlhdCI6MTcyMDYzMjA2NywiZXhwIjoxNzIwNjM1NjY3LCJ0eXBlIjoyMH0.6QO2mrF7SA71IwdfGg6ZWWkaNiRcGDTMGVFq_NnS2mw"
+TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOjU1MjE4MDQsImlhdCI6MTcyMDY0MDEyMywiZXhwIjoxNzIwNjQzNzIzLCJ0eXBlIjoyMH0.cvYs8VP9OtypgGOPnq4Wkd-dpCOYwpw1TQfOkB5pen4"
 
 @allure.feature("API")
 @allure.story("Получение списка книг")
